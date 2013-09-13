@@ -6,6 +6,9 @@
 		<title>Jokes</title>
 	</head>
 	<body>
+		<p>
+			<a href="?addjoke">Add your own joke!</a>
+		</p>
 		<p>Here are the jokes!</p>
 		<?php foreach ($jokes as $joke): ?>
 			<blockquote>

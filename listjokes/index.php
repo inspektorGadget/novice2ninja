@@ -21,7 +21,7 @@
 		exit();
 	}
 	//Loop through result to store in array
-	while ($row = $result->fetch()) {		
+	foreach ($result as $row) {
 		$jokes[] = $row['joketext'];
 	}
 	
