@@ -18,7 +18,7 @@
 				<textarea id="joketext" name="joketext" rows="3" cols="40"></textarea>
 			</div>
 			<div>
-				<input type="submit" value="ADD &rarr;" />
+				<input type="submit" value="ADD" />
 			</div>
 		</form>
 	</body>

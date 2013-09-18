@@ -25,6 +25,22 @@ try {
 	include 'error.html.php';
 	exit();
 }
+//Check to see if new joke has been submitted
+if (isset($_POST['joketext'])) {
+	try {
+		$sql = 'INSERT INTO joke SET joketext = :joketext, jokedate = CURDATE()';
+		$s = $pdo->prepare($sql);
+		$s->bindValue(':joketext',$_POST['joketext']);
+		$s->execute;
+	} catch (PDOException $e) {
+		$error = "Error adding submitted joke: " . $e->getMessage();
+		include 'error.html.php';
+		exit();
+	}
+
+	header('Location: .');
+	exit();
+}
 //Run query to fetch jokes
 try {
 	$sql = 'SELECT joketext FROM joke';
