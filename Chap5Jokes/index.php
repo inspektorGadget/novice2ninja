@@ -43,9 +43,24 @@ if (isset($_POST['joketext'])) {
 	header('Location: .');
 	exit();
 }
+//Check to see if a joke has been deleted
+if (isset($_GET['deletejoke'])) {
+	try {
+		$sql = 'DELETE FROM joke WHERE id = :id';
+		$s = $pdo->prepare($sql);
+		$s->bindValue(':id', $_POST['id']);
+		$s->execute();
+	} catch (PDOException $e) {
+		$error = "Error deleting joke: " . $e->getMessage();
+		include 'error.html.php';
+		exit();
+	}
+	header('Location: .');
+	exit();
+}
 //Run query to fetch jokes
 try {
-	$sql = 'SELECT joketext FROM joke';
+	$sql = 'SELECT joke.id, joketext, name, email FROM joke INNER JOIN author ON authorid = author.id';
 	$result = $pdo -> query($sql);
 } catch (PDOException $e) {
 	$error = 'Error fetching jokes ' . $e -> getMessage();
@@ -54,7 +69,12 @@ try {
 }
 //Loop through result to store in array
 foreach ($result as $row) {
-	$jokes[] = $row['joketext'];
+	$jokes[] = array(
+		'id'=>$row['id'], 
+		'text'=>$row['joketext']
+		'name'=>$row['name']
+		'email'=>$row['email']
+	);
 }
 
 include 'jokes.html.php';
