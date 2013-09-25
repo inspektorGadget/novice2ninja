@@ -60,7 +60,7 @@ if (isset($_GET['deletejoke'])) {
 }
 //Run query to fetch jokes
 try {
-	$sql = 'SELECT joke.id, joketext, name, email FROM joke INNER JOIN author ON authorid = author.id';
+	$sql = 'SELECT joketext, id FROM joke';
 	$result = $pdo -> query($sql);
 } catch (PDOException $e) {
 	$error = 'Error fetching jokes ' . $e -> getMessage();
@@ -72,8 +72,6 @@ foreach ($result as $row) {
 	$jokes[] = array(
 		'id'=>$row['id'], 
 		'text'=>$row['joketext']
-		'name'=>$row['name']
-		'email'=>$row['email']
 	);
 }
 
