@@ -15,6 +15,9 @@
 			<blockquote>
 				<p>
 					<?php echo htmlspecialchars($joke['text'], ENT_QUOTES, 'UTF-8'); ?>
+					<a href="mailto:<?php echo htmlspecialchars($joke['email'], ENT_QUOTES, 'UTF-8'); ?>">
+						<?php echo htmlspecialchars($joke['name'], ENT_QUOTES, 'UTF-8'); ?>
+					</a>
 					<input type="hidden" name="id" value="<?php echo $joke['id']; ?>" />
 					<input type="submit" value="Delete" />
 				</p>
