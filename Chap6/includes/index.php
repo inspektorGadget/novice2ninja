@@ -1,6 +1,6 @@
 <?php
 //Fix Magic Quotes
-include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/magicquotes.inc.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Novice2Ninja/includes/magicquotes.inc.php';
 //Check to see if add joke has been clicked
 if (isset($_GET['addjoke'])) {
 	include 'form.html.php';
@@ -10,7 +10,7 @@ if (isset($_GET['addjoke'])) {
 //Check to see if new joke has been submitted
 if (isset($_POST['joketext'])) {
 	
-	include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
+	include_once $_SERVER['DOCUMENT_ROOT'] . '/Novice2Ninja/includes/db.inc.php';
 	
 	try {
 		$sql = 'INSERT INTO joke SET 
@@ -31,7 +31,7 @@ if (isset($_POST['joketext'])) {
 //Check to see if a joke has been deleted
 if (isset($_GET['deletejoke'])) {
 	
-	include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
+	include_once $_SERVER['DOCUMENT_ROOT'] . '/Novice2Ninja/includes/db.inc.php';
 	
 	try {
 		$sql = 'DELETE FROM joke WHERE id = :id';
@@ -48,7 +48,7 @@ if (isset($_GET['deletejoke'])) {
 }
 //Run query to fetch jokes
 
-include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Novice2Ninja/includes/db.inc.php';
 
 try {
 	$sql = 'SELECT joke.id, joketext, name, email FROM joke INNER JOIN author ON authorid = author.id';
